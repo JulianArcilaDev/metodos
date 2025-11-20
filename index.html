@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Métodos Numéricos en Ingeniería de Sistemas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Métodos Numéricos</h1>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="content-wrapper">
+        <h2>¿Por qué son importantes los métodos numéricos para un ingeniero de sistemas?</h2>
+        <p>
+          Los métodos numéricos permiten resolver problemas matemáticos complejos mediante algoritmos implementables en computadoras.
+          Para un ingeniero de sistemas, son fundamentales en áreas como simulación, gráficos por computadora, análisis de datos,
+          inteligencia artificial, optimización de algoritmos y modelado de sistemas físicos o financieros.
+          Proporcionan las bases para traducir modelos matemáticos continuos a soluciones discretas y eficientes computacionalmente.
+        </p>
+      </div>
+    </section>
+
+    <section class="metodo">
+      <div class="content-wrapper">
+        <h2>Regla del Trapecio</h2>
+        <p>
+          La Regla del Trapecio es un método de integración numérica utilizado para aproximar el valor de una integral definida cuando la función no puede integrarse analíticamente o cuando solo se dispone de valores discretos de la función. Es uno de los métodos más simples dentro de las fórmulas de Newton–Cotes y se basa en aproximar la región bajo la curva mediante trapecios en lugar de rectángulos o polinomios más complejos. Su fundamento es la idea de que, en un intervalo pequeño, la función puede aproximarse de forma razonable por una línea recta que conecte los valores inicial y final del intervalo.
+
+Para aplicar el método en un intervalo único [a, b], se toman los valores f(a) y f(b) y se forma un trapecio cuya base mayor y menor están dadas por dichos valores, mientras que la altura del trapecio corresponde a la longitud del intervalo h = b − a. El área aproximada de la integral se calcula con la fórmula:
+
+∫(a→b) f(x) dx ≈ (h/2) [ f(a) + f(b) ].
+
+Este cálculo representa la estimación más básica, conocida como Regla del Trapecio simple. Sin embargo, cuando el intervalo de integración es amplio o cuando la función presenta comportamientos variados, se recurre a la versión compuesta del método. Para ello, el intervalo [a, b] se divide en n subintervalos iguales, cada uno de longitud h = (b − a)/n. En este caso, se forman múltiples trapecios, uno por cada subintervalo, y se suman sus áreas. La fórmula compuesta queda expresada como:
+
+∫(a→b) f(x) dx ≈ (h/2) [ f(x0) + 2f(x1) + 2f(x2) + … + 2f(x(n−1)) + f(xn) ].
+
+Los valores intermedios reciben un coeficiente 2 porque cada uno forma parte de dos trapecios consecutivos, mientras que los valores en los extremos solo participan en uno. El método es eficiente, fácil de implementar y suficientemente preciso cuando la función no presenta cambios bruscos en su curvatura.
+
+Desde un punto de vista geométrico, la Regla del Trapecio aproxima la integral mediante figuras definidas por líneas rectas, lo que implica que el método está limitado por la capacidad de la función para ser descrita localmente por un modelo lineal. Si la función es suave y no muy curva en los intervalos considerados, el error será pequeño. El error global del método es del orden O(h²), lo que significa que la precisión mejora significativamente al disminuir la longitud del paso. Sin embargo, este orden de error es inferior al de métodos como Simpson 1/3 o Simpson 3/8, que utilizan aproximaciones polinómicas de grados más altos.
+
+La Regla del Trapecio tiene un papel importante en situaciones donde se requiere un método directo, consistente y de poca carga computacional. Se utiliza ampliamente en análisis de datos experimentales, ingeniería, física y cualquier campo donde sea necesario estimar integrales a partir de mediciones discretas. En aplicaciones como procesamiento de señales, cálculos de energía, trayectorias cinemáticas y aproximaciones rápidas, este método permite obtener resultados suficientemente precisos sin recurrir a técnicas más sofisticadas.
+        </p>
+      </div>
+    </section>
+
+    <section class="metodo">
+      <div class="content-wrapper">
+        <h2>Regla de Simpson 3/8</h2>
+        <p>
+          La Regla de Simpson 3/8 es un método de integración numérica utilizado para aproximar el valor de una integral definida cuando no es posible obtener una solución analítica o cuando la función solo se conoce por valores tabulados. Forma parte de las llamadas fórmulas de Newton–Cotes y es una variante de la regla de Simpson tradicional. Mientras que Simpson 1/3 utiliza tres puntos por cada subintervalo, Simpson 3/8 utiliza cuatro puntos y construye un polinomio cúbico que aproxima el comportamiento local de la función.
+
+El objetivo principal del método es estimar el área bajo una curva mediante la suma de áreas pequeñas, pero en vez de usar rectángulos o trapecios, se usa un polinomio de tercer grado que se ajusta a la función en cuatro nodos igualmente espaciados. Este enfoque ofrece una aproximación más precisa en situaciones donde la función presenta variaciones rápidas o donde un polinomio de mayor grado se ajusta mejor a la forma general de la curva.
+
+Para aplicar la regla, se parte de un intervalo [a, b] dividido en n subintervalos iguales, donde n debe ser múltiplo de 3. Esto es esencial porque cada aplicación de la regla utiliza tres subintervalos para generar cuatro puntos. El ancho de cada subintervalo es h = (b − a)/n. Luego se seleccionan los valores de la función en los puntos x0 = a, x1 = a + h, x2 = a + 2h, x3 = a + 3h y así sucesivamente hasta llegar al punto final b.
+
+La fórmula general de la Regla de Simpson 3/8 para un solo bloque de tres subintervalos es:
+
+∫(a→b) f(x) dx ≈ (3h/8) [ f(x0) + 3f(x1) + 3f(x2) + f(x3) ].
+
+Cuando se requiere integrar un intervalo mayor, se suman las contribuciones de cada bloque aplicando la misma estructura. Para varios subintervalos, la fórmula compuesta organiza los términos según la posición de cada punto interior. Los puntos que son múltiplos de 3 se ponderan con un coeficiente 2, mientras que los puntos restantes reciben un coeficiente 3. Esto permite extender el método a integrales más complejas sin perder la estructura cúbica de la aproximación.
+
+El método destaca por tener un error de orden O(h^4), lo que significa que la precisión mejora de manera significativa al disminuir el tamaño del paso. Esto lo hace más preciso que métodos simples como la regla del trapecio y más robusto en algunos casos que Simpson 1/3, especialmente cuando la función tiene curvaturas complejas que se ajustan mejor con un polinomio cúbico. Sin embargo, también implica mayor trabajo computacional debido a la necesidad de manipular más puntos por cada tramo.
+
+La Regla de Simpson 3/8 se utiliza en ingeniería, física, estadística y ciencias aplicadas cuando se requiere obtener integrales aproximadas con buen nivel de exactitud. Se emplea en problemas como cálculo de desplazamiento a partir de velocidades medidas experimentalmente, valores medios de funciones que solo se conocen por muestreo, análisis de señales y resolución numérica de ecuaciones diferenciales. Es especialmente útil cuando se combinan métodos, ya que en algunos casos donde el número total de subintervalos no se ajusta a la fórmula tradicional de Simpson 1/3, puede aplicarse 3/8 en los últimos tramos para completar la integración sin alterar la exactitud global del proceso.
+        </p>
+      </div>
+    </section>
+
+    <section class="metodo">
+      <div class="content-wrapper">
+        <h2>Interpolación Lineal</h2>
+        <p>
+          La interpolación lineal es un método numérico básico utilizado para estimar el valor de una función entre dos puntos conocidos. Se fundamenta en la idea de que, si se conocen dos valores de una función en puntos distintos, es razonable aproximar el comportamiento de la función entre ellos mediante una recta. Esta aproximación supone que la variación entre ambos puntos es uniforme o suficientemente suave como para considerar que un modelo lineal es adecuado en ese intervalo.
+
+El proceso parte de dos puntos conocidos: (x0, f(x0)) y (x1, f(x1)), donde x1 es mayor que x0. Si se desea encontrar el valor aproximado de la función en un punto x ubicado entre x0 y x1, se traza la línea recta que une los dos puntos y se utiliza la ecuación de la recta para calcular el valor interpolado. Desde un punto de vista geométrico, la interpolación lineal consiste en proyectar el punto x sobre la línea que conecta los valores más cercanos de la tabla o de la función. Este enfoque garantiza simplicidad, rapidez en el cálculo y un error controlado siempre que la función no presente curvaturas pronunciadas en ese tramo.
+La fórmula general de la interpolación lineal se deriva de la ecuación de la recta en forma punto-pendiente:
+
+f(x) ≈ f(x0) + [ (f(x1) − f(x0)) / (x1 − x0) ] (x − x0).
+
+El término (f(x1) − f(x0)) / (x1 − x0) representa la pendiente de la recta que une los puntos conocidos. El valor interpolado se obtiene desplazándose horizontalmente desde x0 hasta x y luego subiendo o bajando según la pendiente. Este procedimiento es directo, computacionalmente ligero y evita la necesidad de construir polinomios de mayor orden o recurrir a métodos iterativos más complejos.
+
+En términos prácticos, la interpolación lineal se usa con frecuencia cuando se dispone de datos tabulados o muestreados experimentalmente. Es habitual en ingeniería para estimar características de materiales, parámetros físicos, valores termodinámicos, tasas de cambio y cualquier magnitud cuya dependencia entre dos puntos pueda aproximarse mediante una recta sin generar errores significativos. Por ejemplo, es común en cálculos estructurales, en tablas de vapor, en análisis de señales discretas y en sistemas de control donde se requiere una estimación rápida dentro de un rango limitado de datos conocidos.
+
+La interpolación lineal también es un componente fundamental de métodos más avanzados. Funciona como base para la interpolación por tramos, donde se divide todo el dominio en una serie de intervalos pequeños, aplicando una recta en cada uno. Este enfoque permite construir aproximaciones más precisas en dominios amplios, manteniendo la simplicidad y reduciendo el riesgo de oscilaciones no deseadas que aparecen en polinomios de grado alto. Aunque la interpolación lineal no puede capturar curvaturas complejas, su estabilidad y predictibilidad la convierten en un recurso esencial en algoritmos numéricos, gráficos por computadora, animación digital y análisis numérico en general.
+        </p>
+      </div>
+    </section>
+
+    <!-- Calculadora interactiva -->
+    <section class="metodo" id="calculadora">
+      <div class="content-wrapper">
+        <h2>Calculadora de Métodos Numéricos</h2>
+        <form id="calc-form">
+          <label for="method">Selecciona el método:</label>
+          <select id="method" required>
+            <option value="trapecio">Regla del Trapecio</option>
+            <option value="simpson38">Regla de Simpson 3/8</option>
+          </select>
+
+          <label for="x-values">Valores de <em>x</em> (separados por comas):</label>
+          <input type="text" id="x-values" placeholder="Ej: 0, 1, 2, 3" required />
+
+          <label for="fx-values">Valores de <em>f(x)</em> (separados por comas):</label>
+          <input type="text" id="fx-values" placeholder="Ej: 1, 2.718, 7.389, 20.085" required />
+
+          <button type="button" id="calculate">Calcular</button>
+        </form>
+        <div id="result"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
