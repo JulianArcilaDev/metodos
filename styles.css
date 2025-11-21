@@ -105,6 +105,10 @@ section:nth-child(4) {
   background: var(--gradient-4);
 }
 
+section:nth-child(5) {
+  background: var(--gradient-1);
+}
+
 /* Efecto de overlay con patrón */
 section::before {
   content: '';
@@ -201,62 +205,10 @@ p {
   100% { opacity: 0; transform: translateY(20px); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  header {
-    padding: 3rem 1.5rem;
-  }
+/* ===============================================
+   ESTILOS PARA LA CALCULADORA
+   =============================================== */
 
-  header h1 {
-    font-size: 2.2rem;
-  }
-
-  header p {
-    font-size: 1.1rem;
-  }
-
-  section {
-    padding: 3rem 1.5rem;
-  }
-
-  section .content-wrapper {
-    padding: 2.5rem 1.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  p {
-    font-size: 1.05rem;
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-
-  header p {
-    font-size: 1rem;
-  }
-
-  section .content-wrapper {
-    padding: 2rem 1.2rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-}
-
-
-
-/* Estilos para la calculadora */
 #calculadora {
   background: var(--gradient-1);
 }
@@ -354,6 +306,42 @@ p {
   transform: translateY(-2px);
 }
 
+/* Contenedor de inputs de función y valores */
+#function-inputs,
+#values-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+#function-inputs[style*="display: none"],
+#values-inputs[style*="display: none"] {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#function-inputs[style*="display: flex"],
+#values-inputs[style*="display: flex"] {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+/* Estilos para el hint */
+.hint {
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-style: italic;
+  margin-top: -0.5rem;
+  text-align: left !important;
+  line-height: 1.5;
+  max-width: 100% !important;
+}
+
+/* Área de resultados */
 #result {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -366,6 +354,7 @@ p {
   text-align: center;
   min-height: 60px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -388,6 +377,23 @@ p {
   border-color: rgba(16, 185, 129, 0.5);
 }
 
+#result .note {
+  font-size: 0.95rem !important;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+#result .error,
+#result .success {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+#result strong {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -399,8 +405,41 @@ p {
   }
 }
 
-/* Responsive para la calculadora */
+/* ===============================================
+   RESPONSIVE DESIGN
+   =============================================== */
+
+/* Tablets y pantallas medianas */
 @media (max-width: 768px) {
+  header {
+    padding: 3rem 1.5rem;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  header p {
+    font-size: 1.1rem;
+  }
+
+  section {
+    padding: 3rem 1.5rem;
+  }
+
+  section .content-wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+  }
+
+  /* Calculadora en tablets */
   #calc-form label {
     font-size: 1rem;
   }
@@ -422,7 +461,29 @@ p {
   }
 }
 
+/* Móviles */
 @media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  section .content-wrapper {
+    padding: 2rem 1.2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  /* Calculadora en móviles */
   #calculadora .content-wrapper {
     padding: 2rem 1.2rem;
   }
@@ -441,8 +502,34 @@ p {
     font-size: 0.9rem;
   }
 
+  #calc-form select {
+    padding-right: 2.5rem;
+    background-size: 1rem;
+  }
+
   #calculate {
     padding: 0.9rem 1.5rem;
     font-size: 0.95rem;
+  }
+
+  .hint {
+    font-size: 0.85rem !important;
+  }
+
+  #result {
+    padding: 1rem;
+  }
+
+  #result .success,
+  #result .error {
+    font-size: 1rem;
+  }
+
+  #result strong {
+    font-size: 1.1rem;
+  }
+
+  #result .note {
+    font-size: 0.85rem !important;
   }
 }

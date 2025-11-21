@@ -28,7 +28,7 @@
       <div class="content-wrapper">
         <h2>Regla del Trapecio</h2>
         <p>
-          La Regla del Trapecio es un método de integración numérica utilizado para aproximar el valor de una integral definida cuando la función no puede integrarse analíticamente o cuando solo se dispone de valores discretos de la función. Es uno de los métodos más simples dentro de las fórmulas de Newton–Cotes y se basa en aproximar la región bajo la curva mediante trapecios en lugar de rectángulos o polinomios más complejos. Su fundamento es la idea de que, en un intervalo pequeño, la función puede aproximarse de forma razonable por una línea recta que conecte los valores inicial y final del intervalo.
+          La Regla del Trapecio es un método de integración numérica utilizado para aproximar el valor de una integral definida cuando la función no puede integrarse analíticamente o cuando solo se dispone de valores discretos de la función. Es uno de los métodos más simples dentro de las fórmulas de Newton—Cotes y se basa en aproximar la región bajo la curva mediante trapecios en lugar de rectángulos o polinomios más complejos. Su fundamento es la idea de que, en un intervalo pequeño, la función puede aproximarse de forma razonable por una línea recta que conecte los valores inicial y final del intervalo.
 
 Para aplicar el método en un intervalo único [a, b], se toman los valores f(a) y f(b) y se forma un trapecio cuya base mayor y menor están dadas por dichos valores, mientras que la altura del trapecio corresponde a la longitud del intervalo h = b − a. El área aproximada de la integral se calcula con la fórmula:
 
@@ -51,7 +51,7 @@ La Regla del Trapecio tiene un papel importante en situaciones donde se requiere
       <div class="content-wrapper">
         <h2>Regla de Simpson 3/8</h2>
         <p>
-          La Regla de Simpson 3/8 es un método de integración numérica utilizado para aproximar el valor de una integral definida cuando no es posible obtener una solución analítica o cuando la función solo se conoce por valores tabulados. Forma parte de las llamadas fórmulas de Newton–Cotes y es una variante de la regla de Simpson tradicional. Mientras que Simpson 1/3 utiliza tres puntos por cada subintervalo, Simpson 3/8 utiliza cuatro puntos y construye un polinomio cúbico que aproxima el comportamiento local de la función.
+          La Regla de Simpson 3/8 es un método de integración numérica utilizado para aproximar el valor de una integral definida cuando no es posible obtener una solución analítica o cuando la función solo se conoce por valores tabulados. Forma parte de las llamadas fórmulas de Newton—Cotes y es una variante de la regla de Simpson tradicional. Mientras que Simpson 1/3 utiliza tres puntos por cada subintervalo, Simpson 3/8 utiliza cuatro puntos y construye un polinomio cúbico que aproxima el comportamiento local de la función.
 
 El objetivo principal del método es estimar el área bajo una curva mediante la suma de áreas pequeñas, pero en vez de usar rectángulos o trapecios, se usa un polinomio de tercer grado que se ajusta a la función en cuatro nodos igualmente espaciados. Este enfoque ofrece una aproximación más precisa en situaciones donde la función presenta variaciones rápidas o donde un polinomio de mayor grado se ajusta mejor a la forma general de la curva.
 
@@ -101,11 +101,34 @@ La interpolación lineal también es un componente fundamental de métodos más 
             <option value="simpson38">Regla de Simpson 3/8</option>
           </select>
 
-          <label for="x-values">Valores de <em>x</em> (separados por comas):</label>
-          <input type="text" id="x-values" placeholder="Ej: 0, 1, 2, 3" required />
+          <label for="input-mode">Modo de entrada:</label>
+          <select id="input-mode" required>
+            <option value="function">Ingresar función f(x)</option>
+            <option value="values">Ingresar valores tabulados</option>
+          </select>
 
-          <label for="fx-values">Valores de <em>f(x)</em> (separados por comas):</label>
-          <input type="text" id="fx-values" placeholder="Ej: 1, 2.718, 7.389, 20.085" required />
+          <div id="function-inputs">
+            <label for="function-input">Función f(x):</label>
+            <input type="text" id="function-input" placeholder="Ej: exp(x), x^2 + 2*x, sin(x)" />
+            <p class="hint">Operaciones: +, -, *, /, ^(potencia), sqrt(), sin(), cos(), tan(), exp(), ln(), log(), abs()</p>
+
+            <label for="a-value">Límite inferior (a):</label>
+            <input type="text" id="a-value" placeholder="Ej: 0" />
+
+            <label for="b-value">Límite superior (b):</label>
+            <input type="text" id="b-value" placeholder="Ej: 3" />
+
+            <label for="n-value">Número de subintervalos (n):</label>
+            <input type="text" id="n-value" placeholder="Ej: 6 (múltiplo de 3 para Simpson 3/8)" />
+          </div>
+
+          <div id="values-inputs" style="display: none;">
+            <label for="x-values">Valores de <em>x</em> (separados por comas):</label>
+            <input type="text" id="x-values" placeholder="Ej: 0, 1, 2, 3" />
+
+            <label for="fx-values">Valores de <em>f(x)</em> (separados por comas):</label>
+            <input type="text" id="fx-values" placeholder="Ej: 1, 2.718, 7.389, 20.085" />
+          </div>
 
           <button type="button" id="calculate">Calcular</button>
         </form>
